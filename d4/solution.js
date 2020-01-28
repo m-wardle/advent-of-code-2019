@@ -18,10 +18,21 @@ const checkIncreasing = function (array) {
 const checkRepeat = function (array) {
   let prev = array[0];
   let result = false;
+  let tripCheck = false;
 
   for (let i = 1; i < array.length; i++) {
     if (array[i] === prev) {
-      result = true;
+      if (!tripCheck) {
+        result = true;
+        tripCheck = array[i];
+      } else if (tripCheck === array[i]) {
+        result = false;
+      }
+    } else {
+      tripCheck = false;
+      if (result === true) {
+        break
+      }
     }
 
     prev = array[i]
